@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hotel/modules/Login/Login_Screen.dart';
+import 'package:hotel/modules/splash_screen/splash_screen.dart';
 import 'package:hotel/shared/network/local.dart';
 import 'package:hotel/shared/stayles/themes.dart';
 import 'go.dart';
@@ -40,21 +41,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       themeMode: ThemeMode.light,
       darkTheme: darkTheme,
-      home: AnimatedSplashScreen(
-        splash: Stack(
-          children: const [
-            Image(
-              fit: BoxFit.contain,
-              width: 300,
-              image: AssetImage('images/App_Icon.png'),
-            ),
-          ],
-        ),
-        duration: 2000,
-        nextScreen:startWidget!,
-        splashTransition: SplashTransition.scaleTransition,
-        backgroundColor: Colors.white
-      ),
+      home:SplashScreen(nextScreen: startWidget!),
     );
     }
 }
