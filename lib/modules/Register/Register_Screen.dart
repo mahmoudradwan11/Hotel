@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hotel/layout/home/home_layout.dart';
 import 'package:hotel/modules/Register/cubit/cubit.dart';
 import 'package:hotel/modules/Register/cubit/states.dart';
 import 'package:hotel/modules/profile/profile.dart';
@@ -22,7 +23,7 @@ class RegisterScreen extends StatelessWidget {
           if(state is CreateUserSuccessState)
           {
             showToast('UserCreated',ToastStates.SUCCESS);
-            navigateAndFinish(context,const ProfileScreen());
+            navigateAndFinish(context,const HomeLayout());
           }
         },
         builder:(context,state){

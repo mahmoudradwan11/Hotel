@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel/layout/home/home_layout.dart';
 import 'package:hotel/layout/login_regiseter_Layout/login_register_layout.dart';
-import 'package:hotel/modules/profile/profile.dart';
 import 'package:hotel/modules/splash_screen/splash_screen.dart';
 import 'package:hotel/shared/components/components.dart';
 import 'package:hotel/shared/cubit/cubit.dart';
@@ -26,7 +26,7 @@ void main() async {
   print('id = $userId');
   Widget? widget;
   if (userId != null) {
-    widget = const ProfileScreen();
+    widget = const HomeLayout();
   } else {
     widget = const LoginRegisterLayout();
   }

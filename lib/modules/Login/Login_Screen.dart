@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hotel/layout/home/home_layout.dart';
 import 'package:hotel/modules/Login/cubit/cubit.dart';
 import 'package:hotel/modules/Login/cubit/states.dart';
 import 'package:hotel/modules/profile/profile.dart';
@@ -20,7 +21,7 @@ class LoginScreen extends StatelessWidget {
           listener: (context, state) {
             if (state is LoginSuccessState) {
               CacheHelper.saveData(key:'Uid', value: state.uid).then((value){
-                navigateAndFinish(context, const ProfileScreen());
+                navigateAndFinish(context, const HomeLayout());
                 showToast('Login Done',ToastStates.SUCCESS);
               });
             }
