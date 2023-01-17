@@ -4,13 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel/layout/home/home_layout.dart';
 import 'package:hotel/layout/login_regiseter_Layout/login_register_layout.dart';
-import 'package:hotel/modules/splash_screen/splash_screen.dart';
 import 'package:hotel/shared/components/components.dart';
 import 'package:hotel/shared/cubit/cubit.dart';
 import 'package:hotel/shared/cubit/states.dart';
 import 'package:hotel/shared/network/local.dart';
 import 'package:hotel/shared/stayles/themes.dart';
 import 'bloc_observer.dart';
+import 'modules/splash_screen/splash_screen.dart';
 
 void main() async {
   // This Code Is Written By Eng:Mahmoud Radwan;
