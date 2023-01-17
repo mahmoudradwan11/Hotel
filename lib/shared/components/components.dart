@@ -31,9 +31,10 @@ Widget defaultFieldForm({
       decoration: InputDecoration(
         labelText: label,
         labelStyle: labelStyle,
+        contentPadding: const EdgeInsets.symmetric(horizontal:5,vertical:5),
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: defaultColor),
-          // borderRadius: BorderRadius.circular(30),
+          borderSide: const BorderSide(color: defaultColor,),
+          borderRadius: BorderRadius.circular(30),
         ),
         prefixIcon: Icon(
           prefix,
@@ -42,7 +43,7 @@ Widget defaultFieldForm({
             ? IconButton(
           icon: Icon(suffix),
           onPressed: suffixPress,
-          color: Colors.white,
+          color: Colors.blueGrey,
         )
             : null,
       ),

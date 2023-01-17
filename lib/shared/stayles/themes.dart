@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'colors.dart';
 ThemeData lightTheme = ThemeData(
-  primarySwatch: defaultColor,
+  primaryColor: defaultColor,
   appBarTheme: const AppBarTheme(
     titleSpacing: 20.0,
     backgroundColor: Colors.white,
@@ -17,10 +17,10 @@ ThemeData lightTheme = ThemeData(
       color: Colors.black,
     ),
   ),
-  floatingActionButtonTheme: FloatingActionButtonThemeData(
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: defaultColor,
   ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
     selectedItemColor: defaultColor,
     elevation: 20.0,
@@ -61,7 +61,7 @@ ThemeData darkTheme = ThemeData(
       color: Colors.white,
     ),
   ),
-  floatingActionButtonTheme: FloatingActionButtonThemeData(
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: defaultColor,
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
