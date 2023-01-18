@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotel/models/hotel/egypt_model.dart';
+import 'package:hotel/modules/create_review/create_review.dart';
+import 'package:hotel/shared/components/components.dart';
+import 'package:hotel/shared/components/widgets.dart';
 import 'package:hotel/shared/cubit/cubit.dart';
 import 'package:hotel/shared/cubit/states.dart';
 import 'package:hotel/shared/stayles/colors.dart';
@@ -14,6 +16,7 @@ class HotelDetails extends StatelessWidget {
     return BlocConsumer<HotelCubit, HotelStates>(
         listener: (context, state) {},
         builder: (context, state) {
+          var cubit = HotelCubit.get(context);
           return Scaffold(
             backgroundColor: defaultColor,
             body: SingleChildScrollView(
@@ -23,7 +26,10 @@ class HotelDetails extends StatelessWidget {
                     Container(
                         height: 260,
                         width: double.infinity,
-                        child: Image(image: NetworkImage(model.image!),fit: BoxFit.cover,)),
+                        child: Image(
+                          image: NetworkImage(model.image!),
+                          fit: BoxFit.cover,
+                        )),
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 15.0, right: 15.0, top: 15.0),
@@ -54,10 +60,11 @@ class HotelDetails extends StatelessWidget {
                           ),
                           Text(
                             model.location!,
-                            style: const TextStyle(color: Colors.grey, fontSize: 15),
+                            style: const TextStyle(
+                                color: Colors.grey, fontSize: 15),
                           ),
                           const Spacer(),
-                         const  Text(
+                          const Text(
                             '/Per night',
                             style: TextStyle(color: Colors.grey),
                           ),
@@ -112,15 +119,16 @@ class HotelDetails extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: RatingSummary(
-                              counter:5,
-                              average: num.parse(model.rite!).toDouble(),
-                            showAverage:true,
-                            counterFiveStars:num.parse(model.rite!).toInt(),
-                            counterTwoStars:model.locationRite!.toInt(),
-                            counterThreeStars:model.clean!.toInt(),
-                            counterOneStars:model.service!.toInt(),
+                            counter: 5,
+                            average: num.parse(model.rite!).toDouble(),
+                            showAverage: true,
+                            counterFiveStars: num.parse(model.rite!).toInt(),
+                            counterTwoStars: model.locationRite!.toInt(),
+                            counterThreeStars: model.clean!.toInt(),
+                            counterOneStars: model.service!.toInt(),
                             counterFourStars: model.value!.toInt(),
-                            averageStyle:const TextStyle(color: Colors.white,fontSize: 40),
+                            averageStyle: const TextStyle(
+                                color: Colors.white, fontSize: 40),
                             // label: 'Overrate',
                             // labelStyle: const TextStyle(fontWeight: FontWeight.w600,fontSize: 40,color: Colors.white),
                             backgroundColor: Colors.white,
@@ -128,6 +136,25 @@ class HotelDetails extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 15,right: 15),
+                      child: Text('Reviews',style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white
+                      ),),
+                    ),
+                    //(function:(){}, text:'Add Review',isUpper: false),
+                    ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder:(context,index)=>buildReview(cubit.reviews[index]),
+                        separatorBuilder:(context,index)=>const SizedBox(
+                          height: 5,
+                        ),
+                        itemCount:cubit.reviews.length),
+                    defButton(function:(){
+                      navigateTo(context, CreateReviewScreen());
+                    }, text: 'Add Review',isUpper: false,heigth: 50)
                   ]),
             ),
           );

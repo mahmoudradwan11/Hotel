@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hotel/models/review_model/review_Model.dart';
 import 'package:hotel/modules/hotel_details/hotel_details.dart';
 import 'package:hotel/shared/components/components.dart';
+import 'package:intl/intl.dart';
 
 Widget buildCountryItem(String image, String text,
         AlignmentGeometry alignmentGeometry, context, widget) =>
@@ -32,8 +34,8 @@ Widget buildSizedBox() => const SizedBox(
 Widget buildCostomHotel(model, context) => Padding(
       padding: const EdgeInsets.only(top: 8, left: 8, bottom: 5),
       child: InkWell(
-        onTap:(){
-          navigateTo(context,HotelDetails(model: model));
+        onTap: () {
+          navigateTo(context, HotelDetails(model: model));
         },
         child: Container(
           height: 255,
@@ -69,7 +71,8 @@ Widget buildCostomHotel(model, context) => Padding(
                       ),
                       Text(
                         model.location!,
-                        style: const TextStyle(color: Colors.white, fontSize: 18),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       Spacer(),
                       Column(
@@ -90,6 +93,43 @@ Widget buildCostomHotel(model, context) => Padding(
               )
             ],
           ),
+        ),
+      ),
+    );
+Widget buildReview(ReviewModel model) => Padding(
+      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+      child: Container(
+        height: 120,
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image(image: NetworkImage(model.image!),height: 100,width: 100,fit: BoxFit.cover,),
+                const SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        model.name!,
+                        style: const TextStyle(color: Colors.grey, fontSize: 17),
+                      ),
+                      Text(
+                        DateFormat('MM--dd--20yy At KK:mm')
+                            .format(DateTime.tryParse(model.dateTime!)!),
+                        style: const TextStyle(color: Colors.grey, fontSize: 10),
+                      ),
+                      Text(model.text!,style:const TextStyle(fontSize: 14,color: Colors.white,),maxLines: 1,overflow: TextOverflow.ellipsis,)
+                    ],
+                  ),
+                )
+              ],
+            )
+          ],
         ),
       ),
     );

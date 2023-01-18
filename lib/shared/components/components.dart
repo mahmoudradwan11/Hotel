@@ -133,7 +133,7 @@ Widget buildTextForm(
       double? width,
       String? title,
       double? fontSize = 16.0,
-      Color? color = Colors.black,
+      Color? color = Colors.white,
     }) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -147,8 +147,9 @@ Widget buildTextForm(
         Container(
           height: height,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            border: Border.all(width: 1.0),
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(10.0),
+            border: Border.all(width: 1.0,color: Colors.white),
           ),
           width: MediaQuery.of(context).size.width,
           child: Padding(
