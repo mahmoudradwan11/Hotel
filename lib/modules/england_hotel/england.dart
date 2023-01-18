@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel/layout/home/home_layout.dart';
 import 'package:hotel/shared/components/components.dart';
+import 'package:hotel/shared/components/widgets.dart';
 import 'package:hotel/shared/cubit/cubit.dart';
 import 'package:hotel/shared/cubit/states.dart';
 import 'package:hotel/shared/stayles/colors.dart';
@@ -14,18 +15,35 @@ class EnglandHotel extends StatelessWidget {
     return BlocConsumer<HotelCubit, HotelStates>(
         listener: (context, state) {},
         builder: (context, state) {
+          var cubit = HotelCubit.get(context);
           return Scaffold(
             backgroundColor: defaultColor,
             appBar: AppBar(
-              leading: IconButton(icon:const Icon(Icons.arrow_back,color: Colors.white,), onPressed: () {
-                navigateTo(context,const HomeLayout());
-              },),
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  navigateTo(context, const HomeLayout());
+                },
+              ),
               centerTitle: true,
               backgroundColor: Colors.black,
-              title: const Text('England Hotels',
-                style: TextStyle(color: Colors.white, fontSize: 20,fontFamily: 'Jannah'),),),
+              title: const Text(
+                'England Hotels',
+                style: TextStyle(
+                    color: Colors.white, fontSize: 20, fontFamily: 'Jannah'),
+              ),
+            ),
+            body: ListView.separated(
+                itemBuilder: (context, index) =>
+                    buildCostomHotel(cubit.englandHotels[index], context),
+                separatorBuilder: (context, index) => const SizedBox(
+                      height: 0,
+                    ),
+                itemCount: cubit.englandHotels.length),
           );
-        }
-    );
+        });
   }
 }

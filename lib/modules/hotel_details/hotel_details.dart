@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel/models/hotel/egypt_model.dart';
 import 'package:hotel/shared/cubit/cubit.dart';
 import 'package:hotel/shared/cubit/states.dart';
 import 'package:hotel/shared/stayles/colors.dart';
+import 'package:rating_summary/rating_summary.dart';
 
 class HotelDetails extends StatelessWidget {
   var model;
@@ -21,7 +23,7 @@ class HotelDetails extends StatelessWidget {
                     Container(
                         height: 260,
                         width: double.infinity,
-                        child: Image(image: NetworkImage(model.image!))),
+                        child: Image(image: NetworkImage(model.image!),fit: BoxFit.cover,)),
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 15.0, right: 15.0, top: 15.0),
@@ -52,10 +54,10 @@ class HotelDetails extends StatelessWidget {
                           ),
                           Text(
                             model.location!,
-                            style: TextStyle(color: Colors.grey, fontSize: 15),
+                            style: const TextStyle(color: Colors.grey, fontSize: 15),
                           ),
-                          Spacer(),
-                          Text(
+                          const Spacer(),
+                         const  Text(
                             '/Per night',
                             style: TextStyle(color: Colors.grey),
                           ),
@@ -104,124 +106,28 @@ class HotelDetails extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15.0, vertical: 10),
+                      padding: const EdgeInsets.all(15.0),
                       child: Container(
-                        height: 230,
                         color: Colors.black.withOpacity(0.3),
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    model.rite!,
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 35),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  const Text('Overall rating',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 15,
-                                      )),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Location',
-                                    style: TextStyle(
-                                        color: Colors.grey, fontSize: 15),
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Spacer(),
-                                  Container(
-                                    height: 5,
-                                    child: Slider(
-                                        value: model.locationRite!,
-                                        min: 0.0,
-                                        max: 5.0,
-                                        activeColor: Colors.white,
-                                        inactiveColor: defaultColor,
-                                        thumbColor: Colors.transparent,
-                                        onChanged: (value) {}),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Service',
-                                    style: TextStyle(
-                                        color: Colors.grey, fontSize: 15),
-                                  ),
-                                  Spacer(),
-                                  Container(
-                                    height: 5,
-                                    child: Slider(
-                                        value: model.service!,
-                                        min: 0.0,
-                                        max: 5.0,
-                                        activeColor: Colors.white,
-                                        inactiveColor: defaultColor,
-                                        thumbColor: Colors.transparent,
-                                        onChanged: (value) {}),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Cleanness',
-                                    style: TextStyle(
-                                        color: Colors.grey, fontSize: 15),
-                                  ),
-                                  Spacer(),
-                                  Container(
-                                    height: 5,
-                                    child: Slider(
-                                        value: model.clean!,
-                                        min: 0.0,
-                                        max: 5.0,
-                                        activeColor: Colors.white,
-                                        inactiveColor: defaultColor,
-                                        thumbColor: Colors.transparent,
-                                        onChanged: (value) {}),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Price',
-                                    style: TextStyle(
-                                        color: Colors.grey, fontSize: 15),
-                                  ),
-                                  Spacer(),
-                                  Container(
-                                    height: 5,
-                                    child: Slider(
-                                        value: model.value!,
-                                        min: 0.0,
-                                        max: 5.0,
-                                        activeColor: Colors.white,
-                                        inactiveColor: defaultColor,
-                                        thumbColor: Colors.transparent,
-                                        onChanged: (value) {}),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          padding: const EdgeInsets.all(15.0),
+                          child: RatingSummary(
+                              counter:5,
+                              average: num.parse(model.rite!).toDouble(),
+                            showAverage:true,
+                            counterFiveStars:num.parse(model.rite!).toInt(),
+                            counterTwoStars:model.locationRite!.toInt(),
+                            counterThreeStars:model.clean!.toInt(),
+                            counterOneStars:model.service!.toInt(),
+                            counterFourStars: model.value!.toInt(),
+                            averageStyle:const TextStyle(color: Colors.white,fontSize: 40),
+                            // label: 'Overrate',
+                            // labelStyle: const TextStyle(fontWeight: FontWeight.w600,fontSize: 40,color: Colors.white),
+                            backgroundColor: Colors.white,
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ]),
             ),
           );

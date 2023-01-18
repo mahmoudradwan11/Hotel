@@ -42,6 +42,7 @@ Widget buildCostomHotel(model, context) => Padding(
             alignment: AlignmentDirectional.bottomStart,
             children: [
               Image(
+                fit: BoxFit.cover,
                 image: NetworkImage(model.image!),
                 height: 255,
                 width: double.infinity,

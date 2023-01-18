@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel/models/country/country.dart';
 import 'package:hotel/modules/egypt_hotel/egypt.dart';
 import 'package:hotel/modules/england_hotel/england.dart';
 import 'package:hotel/modules/france_hotel/france.dart';
@@ -11,8 +12,6 @@ import 'package:hotel/shared/cubit/cubit.dart';
 import 'package:hotel/shared/cubit/states.dart';
 import 'package:hotel/shared/stayles/colors.dart';
 
-import '../../models/country/country.dart';
-
 class HomeLayout extends StatelessWidget {
   const HomeLayout({Key? key}) : super(key: key);
 
@@ -21,7 +20,20 @@ class HomeLayout extends StatelessWidget {
     return BlocConsumer<HotelCubit, HotelStates>(
         listener: (context, state) {},
         builder: (context, state) {
+          var cubit = HotelCubit.get(context);
           return Scaffold(
+            drawer:Drawer(
+              backgroundColor: Colors.transparent,
+              child: ListView(children: [
+                UserAccountsDrawerHeader(
+                    accountName:Text(cubit.userModel!.name!),
+                    accountEmail:Text(cubit.userModel!.email!),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage:NetworkImage(cubit.userModel!.photo!)
+                  ),
+                ),
+              ],),
+            ),
             backgroundColor: defaultColor,
             appBar: AppBar(
               backgroundColor: Colors.black,

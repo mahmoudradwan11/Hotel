@@ -7,6 +7,10 @@ class GermanyHotels{
   String? image;
   String? description;
   String? location;
+  double? locationRite;
+  double? service;
+  double?clean;
+  double?value;
   GermanyHotels({
     required this.name,
     required this.price,
@@ -22,6 +26,10 @@ class GermanyHotels{
     price = json['Price'];
     image =json['Image'];
     location = json['Location'];
+    locationRite = json['Location rite'];
+    service = json['Service'];
+    clean = json['Cleanliness'];
+    value = json['Value'];
   }
   Map<String, dynamic> toMap() {
     return {
@@ -31,6 +39,10 @@ class GermanyHotels{
       'Rite':rite,
       'Price':price,
       'Location':location,
+      'Location rite':locationRite,
+      'Service':service,
+      'Cleanliness':clean,
+      'Value':value,
     };
   }
 }

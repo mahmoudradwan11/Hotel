@@ -63,6 +63,7 @@ class HotelCubit extends Cubit<HotelStates> {
     });
   }
 
+
   void getUserData() {
     FirebaseFirestore.instance.collection('Users').doc(userId).get().then((
         value) {
@@ -87,6 +88,18 @@ class HotelCubit extends Cubit<HotelStates> {
       print('Egypt Lenth = ${egyptHotels.length}');
     }).catchError((error) {
       emit(ErrorGetEgyptHotel());
+    });
+  }
+  void getReviews() {
+    FirebaseFirestore.instance.collection('Reviews').get().then((value) {
+      reviews = [];
+      value.docs.forEach((element) {
+        reviews.add(ReviewModel.fromJson(element.data()));
+      });
+      emit(GetReviews());
+      print('Reviews Lenth = ${reviews.length}');
+    }).catchError((error) {
+      emit(ErrorGetReviews());
     });
   }
   void getEnglandHotels() {
