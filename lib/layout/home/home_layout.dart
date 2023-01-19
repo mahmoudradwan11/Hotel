@@ -5,8 +5,6 @@ import 'package:hotel/modules/egypt_hotel/egypt.dart';
 import 'package:hotel/modules/england_hotel/england.dart';
 import 'package:hotel/modules/france_hotel/france.dart';
 import 'package:hotel/modules/germany_hotel/germany.dart';
-import 'package:hotel/modules/italy_hotel/italy.dart';
-import 'package:hotel/modules/spain_hotel/spain.dart';
 import 'package:hotel/shared/components/widgets.dart';
 import 'package:hotel/shared/cubit/cubit.dart';
 import 'package:hotel/shared/cubit/states.dart';
@@ -74,17 +72,7 @@ class HomeLayout extends StatelessWidget {
                       AlignmentDirectional.topEnd,
                       context,
                       const EnglandHotel()),
-                  buildSizedBox(),
-                  buildCountryItem(
-                      CountryImage.spain,
-                      'Spain',
-                      AlignmentDirectional.bottomStart,
-                      context,
-                      const SpainHotel()),
-                  buildSizedBox(),
-                  buildCountryItem(CountryImage.italy, 'Italy',
-                      AlignmentDirectional.topEnd, context, const ItalyHotel()),
-                ],
+                  ],
               ),
             ),
           );

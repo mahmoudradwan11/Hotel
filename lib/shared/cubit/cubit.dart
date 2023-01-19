@@ -6,8 +6,6 @@ import 'package:hotel/models/hotel/egypt_model.dart';
 import 'package:hotel/models/hotel/england_hotel.dart';
 import 'package:hotel/models/hotel/france_hotel.dart';
 import 'package:hotel/models/hotel/germany_hotel.dart';
-import 'package:hotel/models/hotel/italy_hotel.dart';
-import 'package:hotel/models/hotel/spain_model.dart';
 import 'package:hotel/models/review_model/review_Model.dart';
 import 'package:hotel/modules/Login/Login_Screen.dart';
 import 'package:hotel/modules/Register/Register_Screen.dart';
@@ -25,8 +23,6 @@ class HotelCubit extends Cubit<HotelStates> {
   List<ReviewModel> reviews = [];
   List<EgyptHotels> egyptHotels = [];
   List<EnglandHotels> englandHotels = [];
-  List<SpainHotels> spainHotels = [];
-  List<ItalyHotels> italyHotels = [];
   List<GermanyHotels> germanyHotels = [];
   List<FranceHotels> franceHotels = [];
   List<Widget>authScreens = [
@@ -124,30 +120,6 @@ class HotelCubit extends Cubit<HotelStates> {
       print('France Lenth = ${franceHotels.length}');
     }).catchError((error) {
       emit(ErrorGetFranceHotel());
-    });
-  }
-  void getSpainHotels() {
-    FirebaseFirestore.instance.collection('Spain Hotels').get().then((value) {
-      spainHotels = [];
-      value.docs.forEach((element) {
-        spainHotels.add(SpainHotels.fromJson(element.data()));
-      });
-      emit(GetSpainHotel());
-      print('Spain Lenth = ${spainHotels.length}');
-    }).catchError((error) {
-      emit(ErrorGetSpainHotel());
-    });
-  }
-  void getItalyHotels() {
-    FirebaseFirestore.instance.collection('Italy Hotels').get().then((value) {
-      italyHotels = [];
-      value.docs.forEach((element) {
-        italyHotels.add(ItalyHotels.fromJson(element.data()));
-      });
-      emit(GetItalyHotel());
-      print('Italy Lenth = ${italyHotels.length}');
-    }).catchError((error) {
-      emit(ErrorGetItalyHotel());
     });
   }
   void getGermanyHotels() {

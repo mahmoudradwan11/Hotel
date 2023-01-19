@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HotelCubit()..getUserData()..getEgyptHotels()..getEnglandHotels()..getFranceHotels()..getItalyHotels()..getGermanyHotels()..getSpainHotels()..getReviews(),
+      create: (context) => HotelCubit()..getUserData()..getEgyptHotels()..getEnglandHotels()..getFranceHotels()..getGermanyHotels()..getReviews(),
       child: BlocConsumer<HotelCubit, HotelStates>(
         listener: (context, state) {},
         builder: (context, state) {
